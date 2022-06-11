@@ -96,7 +96,7 @@ public class ReactNativeWearCommunicationModule extends ReactContextBaseJavaModu
     }
   }
 
-  @ReactMethod
+  @ReactMethod(isBlockingSynchronousMethod = true)
   public String getEventName() {
     return ReactNativeWearCommunicationModule.RN_EVENT_NAME;
   }

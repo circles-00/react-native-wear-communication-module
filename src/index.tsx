@@ -18,7 +18,7 @@ const ReactNativeWearCommunicationModule =
         }
       );
 
-export function sendDataToClient(data: Object): boolean {
+export function sendDataToClient(data: Object): void {
   return ReactNativeWearCommunicationModule.sendDataToClient(data);
 }
 
