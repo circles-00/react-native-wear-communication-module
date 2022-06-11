@@ -1,8 +1,6 @@
 package com.rn_wear_communication_module;
 
 import android.util.Log;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 
 import com.facebook.react.bridge.ReactApplicationContext;
@@ -90,8 +88,6 @@ public class ReactNativeWearCommunicationModule extends ReactContextBaseJavaModu
         if (item.getUri().getPath().compareTo("/data-query") == 0) {
           DataMap dataMap = DataMapItem.fromDataItem(item).getDataMap();
           Log.d(TAG, "DATA RECEIVED: " + dataMap);
-          Toast.makeText(getReactApplicationContext(), "MESSAGE RECEIVED FROM Wearable DEVICE",
-            Toast.LENGTH_LONG).show();
           if(dataMap.get("dataQuery") != null) {
             sendEventToRN(getReactApplicationContext(), ReactNativeWearCommunicationModule.RN_EVENT_NAME, null);
           }
