@@ -28,7 +28,7 @@ npm install react-native-wear-communication-module
 
 Use case: You need to login a user and take accessToken and validTo timestamp from a remote server. You can use axios to make the request, and then you can pass the data as a JS Object. The sendDataToClient function receives only one parameter of type Object, so you can pass any data as long as it is bundled as an Object. The method is generic and will pass any data to the client.
 ```js
-import { sendDataToClient } from "react-native-respondr_react_native_wear_module";
+import { sendDataToClient } from "react-native-wear-communication-module";
 
 
 axios.post("URL").then(({data}) => {
@@ -44,7 +44,7 @@ Use case: The client needs to submit a query to the React-Native application, so
 
 For this you need to register a listener using the DeviceEventEmitter. You also need to get the name of the Event, for which you can use an exported function of the module.
 ```js
-import { getRNEventName } from "react-native-respondr_react_native_wear_module";
+import { getRNEventName } from "react-native-wear-communication-module";
 import { DeviceEventEmitter } from 'react-native';
 
 
