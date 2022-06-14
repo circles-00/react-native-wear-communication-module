@@ -6,7 +6,7 @@ This module is very helpful if you're developing an application used on an Andro
 
 # Authors
 ### <a href="https://github.com/darknet-00/"> Nikola Krezeski</a>
-### <a href="https://gitlab.com/IvanJanjik">Ivan Janjikj</a>
+### <a href="https://github.com/IvanJanjik">Ivan Janjikj</a>
 
 ## Before you start
 
