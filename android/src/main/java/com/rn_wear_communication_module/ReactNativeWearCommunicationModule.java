@@ -104,7 +104,15 @@ public class ReactNativeWearCommunicationModule extends ReactContextBaseJavaModu
 
 
   private void sendEventToRN(ReactContext reactContext, String eventName, DataMap params) {
+
+    try {
+
+      WritableMap map = Arguments.fromBundle(params.toBundle());
     reactContext.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
-      .emit(eventName, Arguments.fromBundle(params.toBundle()));
+              .emit(eventName, map);
+    }
+    catch (Exception e) {
+      Log.d(TAG, "Error converting to bundle");
+    }
   }
 }
