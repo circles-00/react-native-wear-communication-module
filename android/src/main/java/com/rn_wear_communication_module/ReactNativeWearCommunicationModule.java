@@ -3,6 +3,7 @@ package com.rn_wear_communication_module;
 import android.util.Log;
 import androidx.annotation.NonNull;
 
+import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
@@ -11,6 +12,7 @@ import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableMapKeySetIterator;
 import com.facebook.react.bridge.ReadableType;
 import com.facebook.react.bridge.WritableMap;
+import com.facebook.react.bridge.WritableNativeMap;
 import com.facebook.react.module.annotations.ReactModule;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -88,9 +90,8 @@ public class ReactNativeWearCommunicationModule extends ReactContextBaseJavaModu
         if (item.getUri().getPath().compareTo("/data-query") == 0) {
           DataMap dataMap = DataMapItem.fromDataItem(item).getDataMap();
           Log.d(TAG, "DATA RECEIVED: " + dataMap);
-          if(dataMap.get("dataQuery") != null) {
-            sendEventToRN(getReactApplicationContext(), ReactNativeWearCommunicationModule.RN_EVENT_NAME, null);
-          }
+
+          sendEventToRN(getReactApplicationContext(), ReactNativeWearCommunicationModule.RN_EVENT_NAME, dataMap);
         }
       }
     }
@@ -102,8 +103,16 @@ public class ReactNativeWearCommunicationModule extends ReactContextBaseJavaModu
   }
 
 
-  private void sendEventToRN(ReactContext reactContext, String eventName, WritableMap params) {
+  private void sendEventToRN(ReactContext reactContext, String eventName, DataMap params) {
+
+    try {
+
+      WritableMap map = Arguments.fromBundle(params.toBundle());
     reactContext.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
-      .emit(eventName, params);
+              .emit(eventName, map);
+    }
+    catch (Exception e) {
+      Log.d(TAG, "Error converting to bundle");
+    }
   }
 }
